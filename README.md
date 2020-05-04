@@ -58,7 +58,7 @@ $ bin/windows/zookeeper-server-start.bat config/zookeeper.properties
 $ bin/windows/kafka-server-start.bat config/server.properties
 ```
 
-### Create Topic "test"
+### Create Topic "ProductionMonitoring"
 ```sh
 $ bin/windows/kafka-console-producer.bat --bootstrap-server localhost:9092 --topic ProductionMonitoring
 ```
@@ -77,5 +77,5 @@ $ python3 producer.py
 ### Streaming Data
 run streamer.py to stream data from Kafka to influxDB via Spark
 ```sh
-$ spark-2.4.5-bin-hadoop2.7/bin/spark-submit --jars spark-streaming-kafka-0-8-assembly_2.11-2.4.5.jar /Users/YOURUSERNAME/git/realtime-analytics-production-monitoring/src/steamer.py
+$ spark-2.4.5-bin-hadoop2.7/bin/spark-submit --jars spark-streaming-kafka-0-8-assembly_2.11-2.4.5.jar /Users/YOURUSERNAME/git/realtime-analytics-production-monitoring/src/streamer.py
 ```
