@@ -27,8 +27,8 @@ $ tar -xzf spark-2.4.5-bin-hadoop2.7.tgz
 
 Set Spark Home
 ```sh
-$ export SPARK_HOME="/Users/YOURUSERNAME/Development/Tools/spark-2.4.5-bin-hadoop2.7"
-$ export PATH="$SPARK_HOME/bin:$PATH"
+$ export SPARK_HOME="\Users\YOURUSERNAME\Development\Tools\spark-2.4.5-bin-hadoop2.7"
+$ export PATH="$SPARK_HOME\bin:$PATH"
 ```
 
 To test pyspark, run in terminal
@@ -50,22 +50,26 @@ you should see
 ### Start Zookeper
 switch to folder where you un-tar kafka_2.12-2.5.0 
 ```sh
-$ bin/windows/zookeeper-server-start.bat config/zookeeper.properties
+$ .bin\windows\zookeeper-server-start.bat config\zookeeper.properties
 ```
 
 ### Start Kafka Server
 ```sh
-$ bin/windows/kafka-server-start.bat config/server.properties
+$ .bin\windows\kafka-server-start.bat config\server.properties
 ```
 
 ### Create Topic "ProductionMonitoring"
 ```sh
-$ bin/windows/kafka-console-producer.bat --bootstrap-server localhost:9092 --topic ProductionMonitoring
+$ .\bin\windows\kafka-topics.bat --create --zookeeper localhost --replication-factor 1 --partitions 1 --topic ProductionMonitoring
+```
+### (Optional) To Test Creating Messages in your Topic
+```sh
+$ bin\windows\kafka-console-producer.bat --bootstrap-server localhost:9092 --topic ProductionMonitoring
 ```
 
 ### (Optional) To Monitor Incoming Messages
 ```sh
-$ bin/windows/kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic ProductionMonitoring --from-beginning
+$ .bin/windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic ProductionMonitoring --from-beginning
 ```
 
 ### Producing Messages
@@ -77,5 +81,5 @@ $ python3 producer.py
 ### Streaming Data
 run streamer.py to stream data from Kafka to influxDB via Spark
 ```sh
-$ spark-2.4.5-bin-hadoop2.7/bin/spark-submit --jars spark-streaming-kafka-0-8-assembly_2.11-2.4.5.jar /Users/YOURUSERNAME/git/realtime-analytics-production-monitoring/src/streamer.py
+$ spark-2.4.5-bin-hadoop2.7\bin\spark-submit --jars spark-streaming-kafka-0-8-assembly_2.11-2.4.5.jar \Users\YOURUSERNAME\git\realtime-analytics-production-monitoring\src\streamer.py
 ```
